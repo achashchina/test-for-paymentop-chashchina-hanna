@@ -1,0 +1,60 @@
+<div class="wrapper pt-20 max-w-[80%] m-auto">
+  <div class="flex justify-between">
+    <div class="pb-4">
+      <button mat-raised-button (click)="openDialogForCreate()" class="ml-2">Add book</button>
+    </div>
+  
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search..." #input>
+    </mat-form-field>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <ng-container matColumnDef="author">
+      <th mat-header-cell *matHeaderCellDef>Author</th>
+      <td mat-cell *matCellDef="let element">{{element.author}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="created">
+      <th mat-header-cell *matHeaderCellDef>Created</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="flex justify-between">
+          {{element.created | date : "MMM d yyyy"}}
+          <div>
+            <button class="border-none bg-transparent" (click)="removeData(element.index)">
+              <mat-icon
+                aria-hidden="false"
+                aria-label="delete"
+                fontIcon="delete_forever"
+                class="text-gray-600"
+              ></mat-icon>
+            </button>
+            <button class="border-none bg-transparent" (click)="openDialogForEdit(element)">
+              <mat-icon aria-hidden="false" aria-label="edit" fontIcon="edit" class="text-blue-600"></mat-icon>
+            </button>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+        <div class="w-full h-20 flex justify-center items-center">
+          No data
+          @if (input.value) {
+            for current input
+          }
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

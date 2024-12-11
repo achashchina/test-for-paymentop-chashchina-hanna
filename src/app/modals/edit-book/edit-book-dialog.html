@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>
+    <div class="flex justify-between">
+        Book Info
+
+        <button mat-button (click)="deleteBook()">
+          <mat-icon>delete</mat-icon>
+          Delete book
+        </button>
+    </div>  
+</h2>
+<mat-dialog-content>
+  <div [formGroup]="form" class="flex flex-col mt-3">
+    <mat-form-field>
+      <mat-label>Book Name</mat-label>
+      <input matInput formControlName="name" />
+      @if (name?.invalid && (name?.dirty || name?.touched)) { @if (name?.hasError('required') ){
+      <span class="text-xs text-red-700">Book name is required.</span>
+      } }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Book Author</mat-label>
+      <input matInput formControlName="author" />
+      @if (author?.invalid && (author?.dirty || author?.touched)) { @if (author?.hasError('required') ){
+      <span class="text-xs text-red-700">Book author is required.</span>
+      } }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Was Created</mat-label>
+      <input matInput formControlName="created" [matDatepicker]="picker" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>About</mat-label>
+      <textarea matInput formControlName="about"></textarea>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="close(true && form.valid)" cdkFocusInitial>Save</button>
+  <button mat-button (click)="close(false)">No Thanks</button>
+</mat-dialog-actions>

@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "loiane.ts-extension-pack",
+    "mikestead.dotenv",
+    "nrwl.angular-console",
+    "ZainChen.json",
+    "csstools.postcss",
+    "Orta.vscode-twoslash-queries",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "angular.ng-template",
+    "firsttris.vscode-jest-runner",
+    "esbenp.prettier-vscode"
+  ]
+}
